@@ -1,9 +1,4 @@
 // Usage: quoteclient <server-fifo-filename>
-//
-// Create own named pipe (fifo) and set permissions
-// Send this fifo name to server
-// Open own named pipe
-// Read the quote and display
 
 #include <stdio.h>
 #include <string.h>
@@ -31,15 +26,16 @@ int main(int argc, char *argv[]) {
     // argv[2] specifies # of quotes
     int nquotes = atoi(argv[2]);
 
-    // open argv[1] for writing, send clientfifo
+    // open argv[1] for writing
+    // send clientfifo
     FILE *fp = fopen(argv[1], "wb");
     for(int i=0; i<nquotes; i++)
         fprintf(fp, "%s\n", clientfifo);
     fclose(fp);
-    // open clientfifo for reading and read the quote & print in the screen - improve your life! :-)
+    
     FILE *quotefp = fopen(clientfifo, "r");
     char line[MAXLEN];
-    // read the quote!
+    
     while(fgets(line, MAXLEN, quotefp))
         puts(line);
     unlink(clientfifo);
