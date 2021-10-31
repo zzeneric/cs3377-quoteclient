@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        puts("Usage: quoteclient <server-fifo-name> <# of quotes");
+        puts("Usage: quoteclient <server-fifo-name> <# of quotes>");
         exit(1);
     }
 
